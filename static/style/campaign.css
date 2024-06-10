@@ -1,0 +1,86 @@
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  
+  .section-title h2 {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 0.8;
+    margin-bottom: 4px;
+  }
+  
+  
+  /*! campaign start  */
+  .campaigns .campaigns-wrapper {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+  }
+  /*! campaign end  */
+  
+  
+  
+ 
+  
+  
+  
+  /* responsive  */
+  
+  @media (max-width: 768px) {
+    .blogs .blog-list {
+      grid-template-columns: 1fr;
+    }
+  
+    .policy .policy-list {
+      flex-direction: column;
+    }
+  }
+  
+
+.campaigns .campaign-item {
+    padding: 70px 35px;
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    color: white;
+  }
+  
+  .campaigns .campaign-item .campaign-title {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+  
+  .campaigns .campaign-item .campaign-desc {
+    margin: 40px 0;
+    font-size: 14px;
+  }
+  
+  .campaigns-wrapper:nth-child(1) .campaign-item:nth-child(1) {
+   background-image:url(./img/campaigns/banner1.png);
+  }
+  
+  .campaigns-wrapper:nth-child(1) .campaign-item:nth-child(2) {
+    background-image: url(./img/campaigns/banner2.png);
+  }
+  
+  .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(1) {
+    background-image: url(./img/campaigns/banner3.png);
+    flex: 5;
+  }
+  
+  .campaigns-wrapper:nth-child(2) .campaign-item:nth-child(2) {
+    background-image: url(./img/campaigns/banner4.png);
+    flex: 3;
+  }
+  
+  @media (max-width: 768px) {
+    .campaigns .campaign-item {
+      width: 100%;
+      flex: unset !important;
+    }
+  }
+
+

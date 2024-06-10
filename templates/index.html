@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Tarayıcı</title>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    <!-- Flask ile CSS dosyasını bağlama -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/main.css') }}">
+</head>
+<body> 
+    <header>
+        <div class="global-notification">
+            <div class="container">
+                <p>FISTIK GİBİ ARAMA MOTORU !!!</p>
+            </div>
+        </div>
+        <div class="header-row">
+            <div class="container">
+                <div class="header-wrapper">
+                    <div class="header-mobile">
+                        <i class="bi bi-list" id="btn-menu"></i>
+                    </div>
+                    <div class="header-left">
+                        <a href="{{ url_for('home') }}" class="logo">LOGO</a>
+                    </div>
+                    <div class="header-center" id="sidebar">
+                        <nav class="navigation">
+                            <ul class="menu-list">
+                                <li class="menu-list-item">
+                                    <a href="https://www.google.com/intl/tr/gmail/about/" class="menu-link">
+                                        Gmail
+                                    </a>
+                                </li>
+                                <li class="menu-list-item">
+                                    <a href="/gorsel_aratma" class="menu-link">
+                                        Görseller
+                                    </a>
+                                </li>
+                                <li class="menu-list-item">
+                                    <a href="#" class="menu-link active">
+                                        UYGULAMALAR
+                                        <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <div class="menu-dropdown-wrapper">
+                                        <ul class="menu-dropdown-content">
+                                            <li><a href="https://maps.google.com">Haritalar</a></li>
+                                            <li><a href="https://www.youtube.com">YouTube</a></li>
+                                            <li><a href="https://play.google.com">Play</a></li>
+                                            <li><a href="https://www.haberler.com">Haberler</a></li>
+                                            <li><a href="https://www.google.com/intl/tr/gmail/about/">Gmail</a></li>
+                                            <li><a href="https://desktop.google.com.tr/drive/about.html">Drive</a></li>
+                                            <li><a href="https://web.whatsapp.com/">Whatsapp</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <i class="bi-x-circle" id="close-sidebar"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <footer class="footer">
+        <div class="subscribe-row">
+            <div class="container">
+                <div class="footer-row-wrapper">
+                    <div class="footer-subscribe-wrapper">
+                        <div class="footer-subscribe">
+                            <div class="footer-subscribe-top">
+                                <h3 class="subscribe-title">BASİT HTTP TARAYICI</h3>
+                            </div>
+                            <div class="footer-subscribe-bottom">
+                                <form action="/site_indir" method="post">
+                                    <label for="url">Site URL'si:</label>
+                                    <input type="text" id="url" name="url" size="50">
+                                    <button class="btn" type="submit">İndir ve Göster</button>
+                                </form>
+                                <div id="response"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

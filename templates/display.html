@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Display</title>
+    <style>
+        /* Yüklenme göstergesi için basit bir stil */
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading...</div>
+    <div id="content">
+        {{ content|safe }}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function showLoading() {
+                document.getElementById('loading').style.display = 'block';
+            }
+
+            function hideLoading() {
+                document.getElementById('loading').style.display = 'none';
+            }
+
+            async function handleRequest(url, method = 'POST', body = null) {
+                showLoading();
+                try {
+                    const response = await fetch(url, {
+                        method: method,
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: body
+                    });
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const data = await response.text();
+                    document.getElementById('content').innerHTML = data;
+                    attachEventListeners();
+                } catch (error) {
+                    console.error('Error:', error);
+                } finally {
+                    hideLoading();
+                }
+            }
+
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                const form = event.target;
+                const formData = new FormData(form);
+                const action = form.action || window.location.href;
+
+                handleRequest(action, 'POST', new URLSearchParams(formData));
+            }
+
+            function handleLinkClick(event) {
+                event.preventDefault();
+                const url = event.target.href;
+
+                handleRequest('/site_indir', 'POST', new URLSearchParams({ url }));
+            }
+
+            function handleButtonClick(event) {
+                event.preventDefault();
+                const url = event.target.getAttribute('data-url');
+
+                handleRequest('/site_indir', 'POST', new URLSearchParams({ url }));
+            }
+
+            function attachEventListeners() {
+                document.querySelectorAll('form').forEach(form => {
+                    form.removeEventListener('submit', handleFormSubmit);
+                    form.addEventListener('submit', handleFormSubmit);
+                });
+
+                document.querySelectorAll('a').forEach(link => {
+                    link.removeEventListener('click', handleLinkClick);
+                    link.addEventListener('click', handleLinkClick);
+                });
+
+                document.querySelectorAll('button[data-url]').forEach(button => {
+                    button.removeEventListener('click', handleButtonClick);
+                    button.addEventListener('click', handleButtonClick);
+                });
+            }
+
+            attachEventListeners();
+        });
+    </script>
+</body>
+</html>
